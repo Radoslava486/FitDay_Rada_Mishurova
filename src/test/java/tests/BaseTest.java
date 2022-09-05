@@ -10,13 +10,14 @@ import pages.HomePage;
 import pages.ActivityLogPage;
 import pages.LoginPage;
 import utils.DriverFactory;
+import utils.PropertyReader;
 
 import java.util.concurrent.TimeUnit;
 
 @Listeners(TestListener.class)
 public class BaseTest {
-    protected final static String USERNAME = "Rada486";
-    protected final static String PASSWORD = "7n$ksv6*8SfzRjz";
+    protected final static String USERNAME = PropertyReader.getProperty("username");
+    protected final static String PASSWORD = PropertyReader.getProperty("password");
     protected WebDriver driver;
     protected LoginPage loginPage;
     protected HomePage homePage;

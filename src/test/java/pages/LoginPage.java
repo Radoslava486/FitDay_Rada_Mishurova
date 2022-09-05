@@ -6,6 +6,7 @@ import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import utils.AllureUtils;
+import utils.PropertyReader;
 
 @Log4j2
 
@@ -15,7 +16,7 @@ public class LoginPage extends BasePage{
         super(driver);
     }
 
-    private final static String URL = "https://www.fitday.com/fitness/Login.html";
+    private final static String URL = PropertyReader.getProperty("base_url");
     private final static By usernameInput = By.cssSelector("input#username");
     private final static By passwordInput = By.cssSelector("input[name = Password]");
     private final static By loginButton = By.cssSelector("input[name = login]");
