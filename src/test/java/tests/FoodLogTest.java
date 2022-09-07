@@ -5,11 +5,12 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class FoodLogTest extends BaseTest {
+    String food = "Apple, baked";
 
     @Test(groups = {"Smoke"})
     @Description("food log test")
     public void addFoodToLogTest(){
-        String food = "Apple, baked";
+        int calories = 180;
         loginPage.login(USERNAME, PASSWORD);
         homePage.waitForPageLoaded();
         homePage.chooseField("FOOD");
@@ -18,20 +19,36 @@ public class FoodLogTest extends BaseTest {
         foodLogPage.waitForTableLoaded();
         foodLogPage.clickAdd();
         Assert.assertTrue(foodLogPage.isAlertDisplayed());
-        Assert.assertEquals(foodLogPage.getFinalCalories(), foodLogPage.getCalories());
+        Assert.assertEquals(Integer.parseInt(foodLogPage.getFinalCalories()), calories);
         Assert.assertTrue(foodLogPage.getFinalFoodName().contains(food));
     }
 
     @Test(groups = {"Smoke"})
     @Description("food log test")
     public void removeFoodFromLogTest(){
-        String food = "Apple, baked";
         loginPage.login(USERNAME, PASSWORD);
         homePage.waitForPageLoaded();
         homePage.chooseField("FOOD");
         foodLogPage.waitForSearchInputLoaded();
         foodLogPage.removeFoodFromLog();
         Assert.assertTrue(foodLogPage.isTableEmpty());
+    }
+
+    @Test(groups = {"Regression"})
+    @Description("edit food log test")
+    public void editFoodLogTest() throws InterruptedException {
+        String newAmount = "2";
+        loginPage.login(USERNAME, PASSWORD);
+        homePage.waitForPageLoaded();
+        homePage.chooseField("FOOD");
+        foodLogPage.waitForSearchInputLoaded();
+        foodLogPage.searchFood(food);
+        foodLogPage.waitForTableLoaded();
+        foodLogPage.clickAdd();
+        foodLogPage.editFoodLog();
+        foodLogPage.editFoodAmountInFoodLog(newAmount);
+        Thread.sleep(3000);//какой написать wait
+        Assert.assertEquals(newAmount,foodLogPage.getNewAmount());
 
     }
 

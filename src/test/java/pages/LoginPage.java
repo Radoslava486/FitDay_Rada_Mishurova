@@ -17,31 +17,31 @@ public class LoginPage extends BasePage{
     }
 
     private final static String URL = PropertyReader.getProperty("base_url");
-    private final static By usernameInput = By.cssSelector("input#username");
-    private final static By passwordInput = By.cssSelector("input[name = Password]");
-    private final static By loginButton = By.cssSelector("input[name = login]");
-    private final static By errorMessage = By.cssSelector("p.error");
+    private final static By USERNAME_INPUT = By.cssSelector("input#username");
+    private final static By PASSWORD_INPUT = By.cssSelector("input[name = Password]");
+    private final static By LOGIN_BUTTON = By.cssSelector("input[name = login]");
+    private final static By ERROR_MESSAGE = By.cssSelector("p.error");
 
 
     @Override
     public void waitForPageLoaded() {
         log.info("Waiting for login page loaded");
-        waitForElementDisplayed(usernameInput);
+        waitForElementDisplayed(USERNAME_INPUT);
     }
 
     public void setUsername(String userName) {
         log.info(String.format("Setting username = %s", userName));
-        driver.findElement(usernameInput).sendKeys(userName);
+        driver.findElement(USERNAME_INPUT).sendKeys(userName);
     }
 
     public void setPassword(String password) {
         log.info(String.format("Setting password = %s", password));
-        driver.findElement(passwordInput).sendKeys(password);
+        driver.findElement(PASSWORD_INPUT).sendKeys(password);
     }
 
     public void clickLoginButton() {
         log.info("Clicking 'Login' button");
-        driver.findElement(loginButton).click();
+        driver.findElement(LOGIN_BUTTON).click();
     }
 
     @Step("Logging in")
@@ -58,12 +58,12 @@ public class LoginPage extends BasePage{
     }
 
     public boolean isErrorMessageDisplayed() {
-        return driver.findElement(errorMessage).isDisplayed();
+        return driver.findElement(ERROR_MESSAGE).isDisplayed();
     }
 
     public String getErrorMessageText() {
 
-        return driver.findElement(errorMessage).getText();
+        return driver.findElement(ERROR_MESSAGE).getText();
     }
 }
 
