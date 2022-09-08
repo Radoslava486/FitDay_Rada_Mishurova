@@ -8,9 +8,16 @@ Prerequisites installed
 2. Maven
 3. Allure
 
+Libraries used in the project
+1. selenium version 3.141.59;
+2. webdrivermanager version 5.2.0;
+3. testNG version 7.4.0;
+4. lombok version 1.18.24;
+5. log4j-core version 2.18.0;
+6. allure-testng version 2.18.1;
+
 Setting up config
 1. Clone this repository.
-
 2. Enter your email and password in config.properties.
 
 
@@ -27,31 +34,25 @@ Checklist
 10. Verify that user can edit activity data in activity log.
 
 Test suites
+
 Regression tests
 This suite includes tests from files: LoginTest, ActivityLogTest, FoodLogTest.
-
-Running the suit
+How to run the suit
 To execute the test suite, simply run:
 mvn -Dtest=regression.xml test
 
 
 Smoke tests
 This suite includes tests from files: LoginTest, ActivityLogTest, FoodLogTest.
-
-Running the suit
+How to run the suit
 To execute the test suite, simply run:
 mvn -Dtest=smoke.xml test
 
 
 Negative tests
 This suite includes tests from files: LoginTest(Data-driven), ActivityLogTest, FoodLogTest.
-
-Running the suit
+How to run the suit
 To execute the test suite, simply run:
 mvn -Dtest=negative.xml test
 
-Running tests
-Run tests using mvn clean test command
-mvn clean test
-
-Running a single test use command mvn -Dtest=LogoutTest test
+In order to run a single test use command mvn -Dtest=LogoutTest test
