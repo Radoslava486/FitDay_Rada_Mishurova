@@ -1,6 +1,7 @@
 # FitDay_Rada_Mishurova
 
 What is FitDay?
+
 FitDay.com is a free web site designed to help track and analyze the important aspects of diet and fitness. A personal FitDay account serves as a food and exercise journal. Users can track the foods they eat and the exercises they do on a daily basis. Based on journal entries, FitDay analyzes diet, exercise, and weight, generating graphical reports on the important aspects of fitness, including fat, carbohydrates, and protein intakes, calorie expenditure, weight loss and etc.
 
 Prerequisites installed
