@@ -13,7 +13,6 @@ public class DriverFactory {
         if (browserName.equals("chrome")) {
             WebDriverManager.chromedriver().setup();
             ChromeOptions options = new ChromeOptions();
-            // options.addArguments("--headless");
             options.addArguments("--ignore-certificate-errors");
             options.addArguments("--disable-popup-blocking");
             options.addArguments("--disable-notifications");

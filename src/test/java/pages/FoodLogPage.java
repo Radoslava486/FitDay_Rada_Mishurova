@@ -32,7 +32,7 @@ public class FoodLogPage extends HomePage{
         waitForElementDisplayed(FOOD_SEARCH);
     }
     public void clickAdd(){
-
+        log.info("Clicking 'Add' food to log");
         jsClick(driver.findElement(ADD_FOOD_BUTTON_LOCATOR));
     }
 
@@ -64,13 +64,16 @@ public class FoodLogPage extends HomePage{
         return driver.findElement(NO_RESULTS_WINDOW).isDisplayed();
     }
     public void removeFoodFromLog() {
-            editFoodLog();
-            driver.findElement(DELETE_ICON_LOCATOR).click();
+        log.info("Removing food from log");
+        editFoodLog();
+        driver.findElement(DELETE_ICON_LOCATOR).click();
     }
     public void editFoodLog() {
+        log.info("Click 'Edit' food log");
         driver.findElement(EDIT_ICON_LOCATOR).click();
     }
     public void editFoodAmountInFoodLog(String newValue) {
+        log.info(String.format("Setting new amount value = %s in food log",newValue));
         WebElement amountField = driver.findElement(FOOD_AMOUNT_FINAL_TABLE);
         jsSetValue(amountField, newValue);
         driver.findElement(SAVE_BUTTON).click();

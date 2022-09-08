@@ -13,7 +13,8 @@ public class LoginTest extends BaseTest{
         loginPage.setUsername(USERNAME);
         loginPage.setPassword(PASSWORD);
         loginPage.clickLoginButton();
-        Assert.assertTrue(homePage.isHomeButtonDisplayed());
+        Assert.assertTrue(homePage.isHomeButtonDisplayed(),
+                "Home page is not open");
     }
 
     @Test(dataProvider = "negativeLoginData", groups = {"Negative", "Regression"})
@@ -22,8 +23,10 @@ public class LoginTest extends BaseTest{
         loginPage.setUsername(userName);
         loginPage.setPassword(password);
         loginPage.clickLoginButton();
-        Assert.assertTrue(loginPage.isErrorMessageDisplayed());
-        Assert.assertEquals(loginPage.getErrorMessageText(), errorMessage);
+        Assert.assertTrue(loginPage.isErrorMessageDisplayed(),
+                "Error message is not displayed");
+        Assert.assertEquals(loginPage.getErrorMessageText(), errorMessage,
+        "Error and error message do not match");
     }
 
     @DataProvider(name = "negativeLoginData")

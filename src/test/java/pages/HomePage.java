@@ -25,6 +25,7 @@ public class HomePage extends BasePage {
         waitForElementDisplayed(HOME_BUTTON);
     }
 
+
     public void chooseField(String label) {
         log.info(String.format("Opening %s", label));
         WebElement button = driver.findElement(By.xpath(String.format(LOG_CATEGORY_LOCATOR, label)));

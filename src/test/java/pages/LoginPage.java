@@ -44,7 +44,6 @@ public class LoginPage extends BasePage{
         driver.findElement(LOGIN_BUTTON).click();
     }
 
-    @Step("Logging in")
     @Attachment(value = "screenshot", type = "image/png")
     public void login(String username, String password) {
         setUsername(username);

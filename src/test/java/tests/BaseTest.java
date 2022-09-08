@@ -49,7 +49,6 @@ public class BaseTest {
         ((JavascriptExecutor) driver).executeScript(String.format("window.localStorage.clear();"));
         ((JavascriptExecutor) driver).executeScript(String.format("window.sessionStorage.clear();"));
     }
-
     @AfterClass(alwaysRun = true)
     public void tearDown() {
         driver.quit();
