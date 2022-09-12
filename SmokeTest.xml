@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Smoke Tests" parallel="classes" thread-count="2">
+    <parameter name="browser" value="chrome"/>
+    <test name="All Smoke tests">
+        <groups>
+            <run>
+                <include name="Smoke"/>
+            </run>
+        </groups>
+        <packages>
+            <package name="tests"/>
+        </packages>
+    </test>
+</suite>

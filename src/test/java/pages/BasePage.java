@@ -47,7 +47,7 @@ public abstract class BasePage {
 
     public void jsSetValue(WebElement element, String value) {
         JavascriptExecutor executor = (JavascriptExecutor) driver;
-        executor.executeScript("arguments[0].value = " + value +";", element);
+        executor.executeScript("arguments[0].value = " + value + ";", element);
     }
 }
 

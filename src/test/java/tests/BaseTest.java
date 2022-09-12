@@ -5,9 +5,9 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.testng.ITestContext;
 import org.testng.annotations.*;
+import pages.ActivityLogPage;
 import pages.FoodLogPage;
 import pages.HomePage;
-import pages.ActivityLogPage;
 import pages.LoginPage;
 import utils.DriverFactory;
 
@@ -49,6 +49,7 @@ public class BaseTest {
         ((JavascriptExecutor) driver).executeScript(String.format("window.localStorage.clear();"));
         ((JavascriptExecutor) driver).executeScript(String.format("window.sessionStorage.clear();"));
     }
+
     @AfterClass(alwaysRun = true)
     public void tearDown() {
         driver.quit();

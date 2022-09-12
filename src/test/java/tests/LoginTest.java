@@ -5,7 +5,7 @@ import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-public class LoginTest extends BaseTest{
+public class LoginTest extends BaseTest {
 
     @Test(groups = {"Smoke"})
     @Description("positive Login Test")
@@ -26,7 +26,7 @@ public class LoginTest extends BaseTest{
         Assert.assertTrue(loginPage.isErrorMessageDisplayed(),
                 "Error message is not displayed");
         Assert.assertEquals(loginPage.getErrorMessageText(), errorMessage,
-        "Error and error message do not match");
+                "Error and error message do not match");
     }
 
     @DataProvider(name = "negativeLoginData")
@@ -35,7 +35,7 @@ public class LoginTest extends BaseTest{
                 {"", PASSWORD, "Username is required."},
                 {USERNAME, "", "Password is required."},
                 {"", "", "Username is required."},
-                };
+        };
     }
 
 }

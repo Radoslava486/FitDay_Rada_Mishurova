@@ -8,6 +8,7 @@ import org.testng.annotations.Test;
 
 public class FoodLogTest extends BaseTest {
     String food = "Apple, baked";
+
     @AfterMethod(onlyForGroups = {"TestWithDeletion"})
     public void deleteData() {
         logPage.removeActivityFromLog();
@@ -18,7 +19,7 @@ public class FoodLogTest extends BaseTest {
 
     @Test(groups = {"Smoke", "TestWithDeletion"})
     @Description("positive food log test: add food to log")
-    public void addFoodToLogTest(){
+    public void addFoodToLogTest() {
         int calories = 180;
         loginPage.login(USERNAME, PASSWORD);
         homePage.waitForPageLoaded();
@@ -32,12 +33,12 @@ public class FoodLogTest extends BaseTest {
         Assert.assertEquals(Integer.parseInt(foodLogPage.getFinalCalories()), calories,
                 "Actual and expected calories values do not match");
         Assert.assertEquals(foodLogPage.getFinalFoodName(), food,
-        "Actual and expected product name values do not match");
+                "Actual and expected product name values do not match");
     }
 
     @Test(groups = {"Smoke"})
     @Description("positive food log test: remove food from log")
-    public void removeFoodFromLogTest(){
+    public void removeFoodFromLogTest() {
         loginPage.login(USERNAME, PASSWORD);
         homePage.waitForPageLoaded();
         homePage.chooseField("FOOD");
@@ -52,7 +53,7 @@ public class FoodLogTest extends BaseTest {
 
     @Test(groups = {"Regression", "TestWithDeletion"})
     @Description("edit food log test")
-    public void editFoodLogTest() throws InterruptedException {
+    public void editFoodLogTest() {
         String newAmount = "2";
         String newCalories = "359";
         loginPage.login(USERNAME, PASSWORD);
@@ -63,12 +64,10 @@ public class FoodLogTest extends BaseTest {
         foodLogPage.waitForTableLoaded();
         foodLogPage.clickAdd();
         foodLogPage.editFoodLog();
-        foodLogPage.editFoodAmountInFoodLog(newAmount);
-        Thread.sleep(5000);
-        //какой написать wait
-        Assert.assertEquals(newAmount,foodLogPage.getNewAmount(),
+        foodLogPage.editFoodAmountInFoodLog(newAmount, newCalories);
+        Assert.assertEquals(newAmount, foodLogPage.getNewAmount(),
                 "Actual and expected food amount do not match");
-        Assert.assertEquals(newCalories,foodLogPage.getFinalCalories(),
+        Assert.assertEquals(newCalories, foodLogPage.getFinalCalories(),
                 "Actual and expected calories values do not match");
 
 
@@ -87,4 +86,4 @@ public class FoodLogTest extends BaseTest {
                 "Search is successful");
     }
 
-    }
+}

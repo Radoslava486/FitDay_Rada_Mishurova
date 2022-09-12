@@ -10,6 +10,7 @@ import org.testng.annotations.Test;
 public class ActivityLogTest extends BaseTest {
     String activity = "fast ballroom dancing";
     String testTime = "35";
+
     @AfterMethod(onlyForGroups = {"TestWithDeletion"})
     public void deleteData() {
         logPage.removeActivityFromLog();
@@ -68,20 +69,19 @@ public class ActivityLogTest extends BaseTest {
         logPage.addToActivityLog();
         logPage.waitForSearchInputLoaded();
         logPage.clickEditActivityLog();
-        logPage.editTimeInActivityLog(newTime);
+        logPage.editTimeInActivityLog(newTime, newCalories);
         StringBuffer expectedResult = new StringBuffer("00:");
         expectedResult.append(newTime);
-        Thread.sleep(5000);
-        //wait or refresh
-        Assert.assertEquals(expectedResult.toString(),logPage.getNewTime(),
+        Assert.assertEquals(expectedResult.toString(), logPage.getNewTime(),
                 "Actual and expected time values do not match");
         Assert.assertEquals(logPage.getFinalCalories(), newCalories,
-        "Actual and expected calories values do not match");
+                "Actual and expected calories values do not match");
 
     }
+
     @Test(groups = {"Smoke"})
     @Description("activity log test: remove activity from log")
-    public void removeActivityFromLogTest(){
+    public void removeActivityFromLogTest() {
         loginPage.login(USERNAME, PASSWORD);
         homePage.waitForPageLoaded();
         homePage.chooseField("ACTIVITY");
