@@ -55,7 +55,7 @@ public class ActivityLogTest extends BaseTest {
 
     @Test(groups = {"Regression", "TestWithDeletion"})
     @Description("edit activity log test")
-    public void editActivityLogTest() throws InterruptedException {
+    public void editActivityLogTest() {
         String newTime = "40";
         String newCalories = "201";
         loginPage.login(USERNAME, PASSWORD);
