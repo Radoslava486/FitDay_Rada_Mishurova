@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.By;
 import org.openqa.selenium.StaleElementReferenceException;
@@ -33,6 +34,7 @@ public class ActivityLogPage extends HomePage {
         super(driver);
     }
 
+    @Step("Searching for activity")
     public void searchActivity(String activity) {
         log.info(String.format("Searching for activity: %s", activity));
         driver.findElement(ACTIVITY_SEARCH).sendKeys(activity);
@@ -42,21 +44,25 @@ public class ActivityLogPage extends HomePage {
         return driver.findElement(NO_RESULTS_WINDOW).isDisplayed();
     }
 
+    @Step("Waiting for page loaded")
     public void waitForSearchInputLoaded() {
         log.info("Waiting for page loaded");
         waitForElementDisplayed(ACTIVITY_SEARCH);
     }
 
+    @Step("Waiting for page loaded")
     public void waitForCalculationLoaded() {
         log.info("Waiting for page loaded");
         waitForElementDisplayed(ADD_TO_ACTIVITY_LOG_BUTTON);
     }
 
+    @Step("Clicking 'Add' to activity log")
     public void addToActivityLog() {
         log.info("Clicking 'Add' to activity log");
         driver.findElement(ADD_TO_ACTIVITY_LOG_BUTTON).click();
     }
 
+    @Step("Setting activity time")
     public void setActivityTime(String time) {
         log.info(String.format("Setting activity time = %s", time));
         jsSetValue(driver.findElement(ACTIVITY_TIME_INPUT), time);
@@ -75,17 +81,18 @@ public class ActivityLogPage extends HomePage {
         return driver.findElement(FINAL_TABLE_CALORIES).getText();
     }
 
+    @Step("Removing activity from log")
     public void removeActivityFromLog() {
         log.info("Removing activity from log");
         clickEditActivityLog();
         driver.findElement(DELETE_ICON_LOCATOR).click();
     }
-
+    @Step("Clicking 'Edit' activity log")
     public void clickEditActivityLog() {
         log.info("Clicking 'Edit' activity log");
         driver.findElement(EDIT_ICON_LOCATOR).click();
     }
-
+    @Step("Setting new time value in activity log")
     public void editTimeInActivityLog(String newTime, String newCalories) {
         log.info(String.format("Setting new time value = %s in activity log", newTime));
         WebElement timeField = driver.findElement(FINAL_TABLE_TIME_INPUT);

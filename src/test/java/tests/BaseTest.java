@@ -10,13 +10,14 @@ import pages.FoodLogPage;
 import pages.HomePage;
 import pages.LoginPage;
 import utils.DriverFactory;
+import utils.PropertyReader;
 
 import java.util.concurrent.TimeUnit;
 
 @Listeners(TestListener.class)
 public class BaseTest {
-    protected final static String USERNAME = "Rada486";
-    protected final static String PASSWORD = "7n$ksv6*8SfzRjz";
+    protected final static String USERNAME = PropertyReader.getProperty("username");
+    protected final static String PASSWORD = PropertyReader.getProperty("password");
     protected WebDriver driver;
     protected LoginPage loginPage;
     protected HomePage homePage;
@@ -43,8 +44,16 @@ public class BaseTest {
     }
 
 
-    @AfterMethod(alwaysRun = true)
+    @AfterMethod()
     public void clearCookies() {
+        driver.manage().deleteAllCookies();
+        ((JavascriptExecutor) driver).executeScript(String.format("window.localStorage.clear();"));
+        ((JavascriptExecutor) driver).executeScript(String.format("window.sessionStorage.clear();"));
+    }
+
+    @AfterMethod(onlyForGroups = {"TestWithDeletion"}, groups = {"Smoke", "Negative", "Regression"})
+    public void deleteData() {
+        logPage.removeActivityFromLog();
         driver.manage().deleteAllCookies();
         ((JavascriptExecutor) driver).executeScript(String.format("window.localStorage.clear();"));
         ((JavascriptExecutor) driver).executeScript(String.format("window.sessionStorage.clear();"));
@@ -55,6 +64,7 @@ public class BaseTest {
         driver.quit();
     }
 }
+
 
 
 

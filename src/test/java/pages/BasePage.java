@@ -21,10 +21,6 @@ public abstract class BasePage {
 
     public abstract void waitForPageLoaded();
 
-    public String getCurrentUrl() {
-        return driver.getCurrentUrl();
-    }
-
     public boolean isElementPresent(By locator) {
         driver.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
         boolean isPresent = !driver.findElements(locator).isEmpty();

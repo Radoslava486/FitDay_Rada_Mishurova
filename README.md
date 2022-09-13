@@ -33,6 +33,7 @@ Checklist
 8. Verify that user can not add invalid activity data to activity log.
 9. Verify that user can remove activity data from activity log.
 10. Verify that user can edit activity data in activity log.
+11. Verify the food search relevance in food log
 
 Test suites
 

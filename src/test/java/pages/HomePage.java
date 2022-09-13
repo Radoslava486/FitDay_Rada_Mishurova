@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -20,12 +21,13 @@ public class HomePage extends BasePage {
     }
 
     @Override
+    @Step("Waiting for page loaded")
     public void waitForPageLoaded() {
         log.info("Waiting for page loaded");
         waitForElementDisplayed(HOME_BUTTON);
     }
 
-
+    @Step("Opening category page")
     public void chooseField(String label) {
         log.info(String.format("Opening %s", label));
         WebElement button = driver.findElement(By.xpath(String.format(LOG_CATEGORY_LOCATOR, label)));

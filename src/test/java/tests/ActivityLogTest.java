@@ -2,26 +2,16 @@ package tests;
 
 
 import io.qameta.allure.Description;
-import org.openqa.selenium.JavascriptExecutor;
 import org.testng.Assert;
-import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 
 public class ActivityLogTest extends BaseTest {
     String activity = "fast ballroom dancing";
     String testTime = "35";
 
-    @AfterMethod(onlyForGroups = {"TestWithDeletion"})
-    public void deleteData() {
-        logPage.removeActivityFromLog();
-        driver.manage().deleteAllCookies();
-        ((JavascriptExecutor) driver).executeScript(String.format("window.localStorage.clear();"));
-        ((JavascriptExecutor) driver).executeScript(String.format("window.sessionStorage.clear();"));
-    }
-
     @Test(groups = {"Smoke", "TestWithDeletion"})
     @Description("activity log test: add activity to log")
-    public void activityLogPositiveTest() {
+    public void addActivityToLogTest() {
         int caloriesBurning = 5;
         loginPage.login(USERNAME, PASSWORD);
         homePage.waitForPageLoaded();
@@ -81,7 +71,7 @@ public class ActivityLogTest extends BaseTest {
 
     @Test(groups = {"Smoke"})
     @Description("activity log test: remove activity from log")
-    public void removeActivityFromLogTest() {
+    public void removeActivityFromLogTest() throws InterruptedException {
         loginPage.login(USERNAME, PASSWORD);
         homePage.waitForPageLoaded();
         homePage.chooseField("ACTIVITY");
@@ -93,6 +83,7 @@ public class ActivityLogTest extends BaseTest {
         logPage.addToActivityLog();
         logPage.waitForSearchInputLoaded();
         logPage.removeActivityFromLog();
+        Thread.sleep(15000);
         Assert.assertTrue(logPage.isTableEmpty(),
                 "Activity table is not empty");
     }

@@ -1,21 +1,13 @@
 package tests;
 
 import io.qameta.allure.Description;
-import org.openqa.selenium.JavascriptExecutor;
 import org.testng.Assert;
-import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
+
+import java.util.List;
 
 public class FoodLogTest extends BaseTest {
     String food = "Apple, baked";
-
-    @AfterMethod(onlyForGroups = {"TestWithDeletion"})
-    public void deleteData() {
-        logPage.removeActivityFromLog();
-        driver.manage().deleteAllCookies();
-        ((JavascriptExecutor) driver).executeScript(String.format("window.localStorage.clear();"));
-        ((JavascriptExecutor) driver).executeScript(String.format("window.sessionStorage.clear();"));
-    }
 
     @Test(groups = {"Smoke", "TestWithDeletion"})
     @Description("positive food log test: add food to log")
@@ -38,7 +30,7 @@ public class FoodLogTest extends BaseTest {
 
     @Test(groups = {"Smoke"})
     @Description("positive food log test: remove food from log")
-    public void removeFoodFromLogTest() {
+    public void removeFoodFromLogTest() throws InterruptedException {
         loginPage.login(USERNAME, PASSWORD);
         homePage.waitForPageLoaded();
         homePage.chooseField("FOOD");
@@ -47,6 +39,7 @@ public class FoodLogTest extends BaseTest {
         foodLogPage.waitForTableLoaded();
         foodLogPage.clickAdd();
         foodLogPage.removeFoodFromLog();
+        Thread.sleep(15000);
         Assert.assertTrue(foodLogPage.isTableEmpty(),
                 "Food table is not empty");
     }
@@ -84,6 +77,20 @@ public class FoodLogTest extends BaseTest {
         foodLogPage.searchFood(food);
         Assert.assertTrue(foodLogPage.isNoResultsDisplayed(),
                 "Search is successful");
+    }
+
+    @Test(groups = {"Smoke"})
+    @Description("Verify search test")
+    public void verifySearchTest() {
+        String searchWord = "Apple";
+        loginPage.login(USERNAME, PASSWORD);
+        homePage.waitForPageLoaded();
+        homePage.chooseField("FOOD");
+        foodLogPage.waitForSearchInputLoaded();
+        foodLogPage.searchFood(searchWord);
+        foodLogPage.waitForTableLoaded();
+        List<String> actualResult = foodLogPage.getAllSearchResults();
+        Assert.assertTrue(actualResult.stream().allMatch(result -> result.contains(searchWord)));
     }
 
 }
