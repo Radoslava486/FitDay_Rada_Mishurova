@@ -3,14 +3,8 @@ package pages;
 import io.qameta.allure.Step;
 import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.By;
-import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.FluentWait;
-import org.openqa.selenium.support.ui.Wait;
-
-import java.time.Duration;
-import java.util.function.Function;
 
 
 @Log4j2
@@ -87,21 +81,20 @@ public class ActivityLogPage extends HomePage {
         clickEditActivityLog();
         driver.findElement(DELETE_ICON_LOCATOR).click();
     }
+
     @Step("Clicking 'Edit' activity log")
     public void clickEditActivityLog() {
         log.info("Clicking 'Edit' activity log");
         driver.findElement(EDIT_ICON_LOCATOR).click();
     }
+
     @Step("Setting new time value in activity log")
     public void editTimeInActivityLog(String newTime, String newCalories) {
         log.info(String.format("Setting new time value = %s in activity log", newTime));
         WebElement timeField = driver.findElement(FINAL_TABLE_TIME_INPUT);
         jsSetValue(timeField, newTime);
         driver.findElement(SAVE_BUTTON).click();
-        Wait wait = new FluentWait(driver)
-                .withTimeout(Duration.ofSeconds(5))
-                .ignoring(StaleElementReferenceException.class);
-        wait.until((Function<WebDriver, Boolean>) driver -> driver.findElement(FINAL_TABLE_CALORIES).getAttribute("innerText").equals(newCalories));
+        fluentWait(FINAL_TABLE_CALORIES, newCalories);
     }
 
     public String getNewTime() {

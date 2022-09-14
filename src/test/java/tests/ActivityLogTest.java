@@ -60,7 +60,7 @@ public class ActivityLogTest extends BaseTest {
         logPage.waitForSearchInputLoaded();
         logPage.clickEditActivityLog();
         logPage.editTimeInActivityLog(newTime, newCalories);
-        StringBuffer expectedResult = new StringBuffer("00:");
+        StringBuilder expectedResult = new StringBuilder("00:");
         expectedResult.append(newTime);
         Assert.assertEquals(expectedResult.toString(), logPage.getNewTime(),
                 "Actual and expected time values do not match");
@@ -71,7 +71,7 @@ public class ActivityLogTest extends BaseTest {
 
     @Test(groups = {"Smoke"})
     @Description("activity log test: remove activity from log")
-    public void removeActivityFromLogTest() throws InterruptedException {
+    public void removeActivityFromLogTest() {
         loginPage.login(USERNAME, PASSWORD);
         homePage.waitForPageLoaded();
         homePage.chooseField("ACTIVITY");
@@ -83,7 +83,6 @@ public class ActivityLogTest extends BaseTest {
         logPage.addToActivityLog();
         logPage.waitForSearchInputLoaded();
         logPage.removeActivityFromLog();
-        Thread.sleep(15000);
         Assert.assertTrue(logPage.isTableEmpty(),
                 "Activity table is not empty");
     }

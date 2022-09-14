@@ -30,7 +30,7 @@ public class FoodLogTest extends BaseTest {
 
     @Test(groups = {"Smoke"})
     @Description("positive food log test: remove food from log")
-    public void removeFoodFromLogTest() throws InterruptedException {
+    public void removeFoodFromLogTest() {
         loginPage.login(USERNAME, PASSWORD);
         homePage.waitForPageLoaded();
         homePage.chooseField("FOOD");
@@ -39,7 +39,6 @@ public class FoodLogTest extends BaseTest {
         foodLogPage.waitForTableLoaded();
         foodLogPage.clickAdd();
         foodLogPage.removeFoodFromLog();
-        Thread.sleep(15000);
         Assert.assertTrue(foodLogPage.isTableEmpty(),
                 "Food table is not empty");
     }

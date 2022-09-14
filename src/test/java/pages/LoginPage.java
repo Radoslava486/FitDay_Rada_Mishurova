@@ -27,21 +27,25 @@ public class LoginPage extends BasePage {
         log.info("Waiting for login page loaded");
         waitForElementDisplayed(USERNAME_INPUT);
     }
+
     @Step("Setting username")
     public void setUsername(String userName) {
         log.info(String.format("Setting username = %s", userName));
         driver.findElement(USERNAME_INPUT).sendKeys(userName);
     }
+
     @Step("Setting password")
     public void setPassword(String password) {
         log.info(String.format("Setting password = %s", password));
         driver.findElement(PASSWORD_INPUT).sendKeys(password);
     }
+
     @Step("Clicking 'Login' button")
     public void clickLoginButton() {
         log.info("Clicking 'Login' button");
         driver.findElement(LOGIN_BUTTON).click();
     }
+
     @Step("Logging in")
     public void login(String username, String password) {
         log.info("Logging in");

@@ -1,13 +1,14 @@
 package pages;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.FluentWait;
+import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.time.Duration;
 import java.util.concurrent.TimeUnit;
+import java.util.function.Function;
 
 public abstract class BasePage {
 
@@ -44,6 +45,13 @@ public abstract class BasePage {
     public void jsSetValue(WebElement element, String value) {
         JavascriptExecutor executor = (JavascriptExecutor) driver;
         executor.executeScript("arguments[0].value = " + value + ";", element);
+    }
+
+    public void fluentWait(By locator, String newValue) {
+        Wait wait = new FluentWait(driver)
+                .withTimeout(Duration.ofSeconds(5))
+                .ignoring(StaleElementReferenceException.class);
+        wait.until((Function<WebDriver, Boolean>) driver -> driver.findElement(locator).getAttribute("innerText").equals(newValue));
     }
 }
 
