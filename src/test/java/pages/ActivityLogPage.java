@@ -94,7 +94,7 @@ public class ActivityLogPage extends HomePage {
         WebElement timeField = driver.findElement(FINAL_TABLE_TIME_INPUT);
         jsSetValue(timeField, newTime);
         driver.findElement(SAVE_BUTTON).click();
-        fluentWait(FINAL_TABLE_CALORIES, newCalories);
+        waitForElementTextToBe(FINAL_TABLE_CALORIES, newCalories);
     }
 
     public String getNewTime() {

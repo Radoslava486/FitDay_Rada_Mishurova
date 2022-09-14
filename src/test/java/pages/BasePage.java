@@ -47,7 +47,7 @@ public abstract class BasePage {
         executor.executeScript("arguments[0].value = " + value + ";", element);
     }
 
-    public void fluentWait(By locator, String newValue) {
+    public void waitForElementTextToBe(By locator, String newValue) {
         Wait wait = new FluentWait(driver)
                 .withTimeout(Duration.ofSeconds(5))
                 .ignoring(StaleElementReferenceException.class);

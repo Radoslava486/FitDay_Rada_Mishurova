@@ -96,7 +96,7 @@ public class FoodLogPage extends HomePage {
         WebElement amountField = driver.findElement(FOOD_AMOUNT_FINAL_TABLE);
         jsSetValue(amountField, newValue);
         driver.findElement(SAVE_BUTTON).click();
-        fluentWait(TABLE_CALORIES_LOCATOR, newCalories);
+        waitForElementTextToBe(TABLE_CALORIES_LOCATOR, newCalories);
     }
 
     public List<String> getAllSearchResults() {
