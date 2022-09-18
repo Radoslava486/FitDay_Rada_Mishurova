@@ -1,13 +1,23 @@
 package tests;
 
 import io.qameta.allure.Description;
+import org.openqa.selenium.JavascriptExecutor;
 import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 
 import java.util.List;
 
 public class FoodLogTest extends BaseTest {
     String food = "Apple, baked";
+
+    @AfterMethod(onlyForGroups = {"TestWithDeletion"}, groups = {"Smoke", "Negative", "Regression"})
+    public void deleteData() {
+        foodLogPage.removeFoodFromLog();
+        driver.manage().deleteAllCookies();
+        ((JavascriptExecutor) driver).executeScript(String.format("window.localStorage.clear();"));
+        ((JavascriptExecutor) driver).executeScript(String.format("window.sessionStorage.clear();"));
+    }
 
     @Test(groups = {"Smoke", "TestWithDeletion"})
     @Description("positive food log test: add food to log")

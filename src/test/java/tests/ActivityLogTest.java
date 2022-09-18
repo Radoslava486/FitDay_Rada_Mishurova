@@ -2,12 +2,24 @@ package tests;
 
 
 import io.qameta.allure.Description;
+import org.openqa.selenium.JavascriptExecutor;
 import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
+
+
 
 public class ActivityLogTest extends BaseTest {
     String activity = "fast ballroom dancing";
     String testTime = "35";
+
+    @AfterMethod(onlyForGroups = {"TestWithDeletion"}, groups = {"Smoke", "Negative", "Regression"})
+    public void deleteData() {
+        logPage.removeActivityFromLog();
+        driver.manage().deleteAllCookies();
+        ((JavascriptExecutor) driver).executeScript(String.format("window.localStorage.clear();"));
+        ((JavascriptExecutor) driver).executeScript(String.format("window.sessionStorage.clear();"));
+    }
 
     @Test(groups = {"Smoke", "TestWithDeletion"})
     @Description("activity log test: add activity to log")

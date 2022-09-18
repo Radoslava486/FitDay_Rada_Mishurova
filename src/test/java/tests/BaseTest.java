@@ -51,13 +51,6 @@ public class BaseTest {
         ((JavascriptExecutor) driver).executeScript(String.format("window.sessionStorage.clear();"));
     }
 
-    @AfterMethod(onlyForGroups = {"TestWithDeletion"}, groups = {"Smoke", "Negative", "Regression"})
-    public void deleteData() {
-        logPage.removeActivityFromLog();
-        driver.manage().deleteAllCookies();
-        ((JavascriptExecutor) driver).executeScript(String.format("window.localStorage.clear();"));
-        ((JavascriptExecutor) driver).executeScript(String.format("window.sessionStorage.clear();"));
-    }
 
     @AfterClass(alwaysRun = true)
     public void tearDown() {
