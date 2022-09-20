@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="All Tests" parallel="classes" thread-count="1">
+    <parameter name="browser" value="chrome"/>
+    <test name="All tests">
+        <classes>
+            <class name="tests.LoginTest" />
+            <class name="tests.ActivityLogTest" />
+            <class name="tests.FoodLogTest" />
+            <class name="tests.BodyLogTest" />
+            <class name="tests.WeightLogTest" />
+            <class name="tests.MoodLogTest" />
+        </classes>
+    </test>
+</suite>

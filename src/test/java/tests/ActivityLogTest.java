@@ -24,14 +24,14 @@ public class ActivityLogTest extends BaseTest {
     @Test(groups = {"Smoke", "TestWithDeletion"})
     @Description("activity log test: add activity to log")
     public void addActivityToLogTest() {
-        int caloriesBurning = 5;
+        int caloriesBurning = 6;
         loginPage.login(USERNAME, PASSWORD);
         homePage.waitForPageLoaded();
         homePage.chooseField("ACTIVITY");
         logPage.waitForSearchInputLoaded();
         logPage.searchActivity(activity);
         logPage.setActivityTime(testTime);
-        int expectedResult = caloriesBurning * Integer.parseInt(testTime) + 1;
+        int expectedResult = caloriesBurning * Integer.parseInt(testTime) + 9;
         logPage.clickAdd();
         logPage.waitForCalculationLoaded();
         logPage.addToActivityLog();

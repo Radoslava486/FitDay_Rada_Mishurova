@@ -23,7 +23,6 @@ public class TestListener implements ITestListener {
     }
 
     @Override
-    @Attachment(value = "screenshot", type = "image/png")
     public void onTestFailure(ITestResult result) {
         ITestListener.super.onTestFailure(result);
         log.debug(String.format("Test %s failed", result.getName()));

@@ -5,10 +5,7 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.testng.ITestContext;
 import org.testng.annotations.*;
-import pages.ActivityLogPage;
-import pages.FoodLogPage;
-import pages.HomePage;
-import pages.LoginPage;
+import pages.*;
 import utils.DriverFactory;
 import utils.PropertyReader;
 
@@ -23,6 +20,9 @@ public class BaseTest {
     protected HomePage homePage;
     protected ActivityLogPage logPage;
     protected FoodLogPage foodLogPage;
+    protected BodyLogPage bodyLogPage;
+    protected WeightLogPage weightLogPage;
+    protected MoodLogPage moodLogPage;
 
     @BeforeClass(alwaysRun = true)
     public void setUp(ITestContext testContext) throws Exception {
@@ -36,6 +36,9 @@ public class BaseTest {
         homePage = new HomePage(driver);
         logPage = new ActivityLogPage(driver);
         foodLogPage = new FoodLogPage(driver);
+        bodyLogPage = new BodyLogPage(driver);
+        weightLogPage = new WeightLogPage(driver);
+        moodLogPage = new MoodLogPage(driver);
     }
 
     @BeforeMethod(alwaysRun = true)
