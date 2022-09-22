@@ -59,7 +59,7 @@ public class ActivityLogTest extends BaseTest {
     @Description("edit activity log test")
     public void editActivityLogTest() {
         String newTime = "40";
-        String newCalories = "201";
+        String newCalories = "250";
         loginPage.login(USERNAME, PASSWORD);
         homePage.waitForPageLoaded();
         homePage.chooseField("ACTIVITY");
