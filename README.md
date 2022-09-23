@@ -33,6 +33,10 @@ Checklist
 8. Verify that user can not add invalid activity data to activity log.
 9. Verify that user can remove activity data from activity log.
 10. Verify that user can edit activity data in activity log.
+11. Verify food search relevance in food log.
+12. Verify that user can add weight data to weight log.
+13. Verify that user can add body parameters to body log.
+14. Verify that user can edit mood diary in mood log.
 
 Test suites
 
@@ -44,7 +48,7 @@ mvn -Dtest=regression.xml test
 
 
 Smoke tests
-This suite includes tests from files: LoginTest, ActivityLogTest, FoodLogTest.
+This suite includes tests from files: LoginTest, ActivityLogTest, FoodLogTest, WeightLogTest, BodyLogTest.
 How to run the suit
 To execute the test suite, simply run:
 mvn -Dtest=smoke.xml test
